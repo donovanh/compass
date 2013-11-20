@@ -6,7 +6,7 @@
   <body>
     
     <article class="container">
-
+      <section id="info">info</section>
     </article>
 
     <p class="credit"><strong><a href="http://hop.ie/blog/compass/">Compass CSS</a></strong> - View the <a href="http://github.com/donovanh/compass/">source on Github</a></p>
@@ -23,6 +23,11 @@
     //   ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
     //   var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
     // })();
+
+    window.addEventListener('deviceorientation', function(e) {
+        // console.log(e.webkitCompassHeading);
+        document.getElementById("info").innerHTML=e.webkitCompassHeading; 
+    }, false);
 
   </script>
   </body>
