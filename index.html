@@ -6,12 +6,41 @@
   <body>
     
     <article class="container">
-      <section id="info">info</section>
+      <figure class="compass">
+        <span class="marker north"></span>
+        <span class="marker east"></span>
+        <span class="marker south"></span>
+        <span class="marker west"></span>
+        <span class="arrow"></span>
+      </figure>
     </article>
 
     <p class="credit"><strong><a href="http://hop.ie/blog/compass/">Compass CSS</a></strong> - View the <a href="http://github.com/donovanh/compass/">source on Github</a></p>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <script type="text/javascript">
 
+    window.addEventListener('deviceorientation', function(e) {
+        if (e.webkitCompassHeading == undefined) {
+          runDefaultAnimation();
+        } else {
+          setDegrees(e.webkitCompassHeading);
+        }
+    }, false);
+
+    function runDefaultAnimation() {
+      setDegrees(45);
+      setTimeout(function() {setDegrees(-45);}, 1000);
+      setTimeout(function() {setDegrees(120);}, 2000);
+      setTimeout(function() {setDegrees(-150);}, 3500);
+      setTimeout(function() {runDefaultAnimation();}, 4500);
+    }
+
+    function setDegrees(degree) {
+      $('.compass').css('-webkit-transform', 'rotateZ('+ degree +'deg)');
+    }
+
+
+    // // Analytics stuff
     // var _gaq = _gaq || [];
     // _gaq.push(['_setAccount', 'UA-3481417-23']);
     // _gaq.push(['_setDomainName', 'hop.ie']);
@@ -23,11 +52,6 @@
     //   ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
     //   var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
     // })();
-
-    window.addEventListener('deviceorientation', function(e) {
-        // console.log(e.webkitCompassHeading);
-        document.getElementById("info").innerHTML=e.webkitCompassHeading; 
-    }, false);
 
   </script>
   </body>

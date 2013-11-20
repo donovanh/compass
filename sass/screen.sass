@@ -1,5 +1,62 @@
 @import compass/reset
 @import compass/css3
 
+body
+  font: 16px 'Helvetica-neue', Helvetica, Sans-serif
+  color: #aaa
 
+.container
+  width: 300px
+  height: 300px
+  margin: 20px auto
+
+.compass
+  width: 100%
+  height: 100%
+  border-radius: 50%
+  background: #aaa
+  position: relative
+  +transition(all 0.5s ease-in-out)
+
+  .marker
+    background: #333
+    border-radius: 50%
+    display: block
+    width: 40px
+    height: 40px
+    position: absolute
+    text-align: center
+    line-height: 40px
+
+    &.north
+      top: 0
+      left: 50%
+      margin-left: -20px
+
+      &:after
+        content: 'N'
+
+    &.east
+      top: 50%
+      right: 0
+      margin-top: -20px
+
+      &:after
+        content: 'E'
+
+    &.south
+      bottom: 0
+      left: 50%
+      margin-left: -20px
+
+      &:after
+        content: 'S'
+
+    &.west
+      top: 50%
+      left: 0
+      margin-top: -20px
+
+      &:after
+        content: 'W'
  
