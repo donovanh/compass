@@ -24,20 +24,20 @@
         if (e.webkitCompassHeading == undefined) {
           runDefaultAnimation();
         } else {
-          setDegrees(e.webkitCompassHeading);
+          setHeading(e.webkitCompassHeading);
         }
     }, false);
 
     function runDefaultAnimation() {
       setDegrees(45);
-      setTimeout(function() {setDegrees(-45);}, 1000);
-      setTimeout(function() {setDegrees(120);}, 2000);
-      setTimeout(function() {setDegrees(-150);}, 3500);
+      setTimeout(function() {setHeading(-45);}, 1000);
+      setTimeout(function() {setHeading(120);}, 2000);
+      setTimeout(function() {setHeading(-150);}, 3500);
       setTimeout(function() {runDefaultAnimation();}, 4500);
     }
 
-    function setDegrees(degree) {
-      $('.compass').css('-webkit-transform', 'rotateZ('+ degree +'deg)');
+    function setHeading(heading) {
+      $('.compass').css('-webkit-transform', 'rotateZ('+ heading +'deg)');
     }
 
 
