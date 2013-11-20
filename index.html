@@ -3,6 +3,7 @@
     <title>Compass CSS</title>
     <link href="stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
   </head>
   <body>
     
@@ -20,6 +21,7 @@
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <script type="text/javascript">
 
+    var lastHeading = 0;
     window.addEventListener('deviceorientation', function(e) {
         if (e.webkitCompassHeading == undefined) {
           runDefaultAnimation();
@@ -29,15 +31,23 @@
     }, false);
 
     function runDefaultAnimation() {
-      setDegrees(45);
+      setHeading(45);
       setTimeout(function() {setHeading(-45);}, 1000);
       setTimeout(function() {setHeading(120);}, 2000);
       setTimeout(function() {setHeading(-150);}, 3500);
       setTimeout(function() {runDefaultAnimation();}, 4500);
     }
 
-    function setHeading(heading) {
+    function setHeading(compassHeading) {
       $('.compass').css('-webkit-transform', 'rotateZ('+ heading +'deg)');
+      var heading = compassHeading + window.orientation;
+      // if (Math.abs(heading - lastHeading)<180) {
+      //     spinner.style.webkitTransition = 'all 0.2s ease-in-out';
+      // } else {
+      //     spinner.style.webkitTransition = 'none';
+      // }
+      $('.compass').css('-webkit-transform', 'rotateZ('+ heading +'deg)');
+      lastHeading = heading;
     }
 
 
